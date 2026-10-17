@@ -1,10 +1,19 @@
-# 공공영업 상황실 미러 (로컬 클론)
+# 공공영업 상황실 미러 (Render 배포)
 
-https://public-sales-insight-coach.onrender.com 사이트의 공개 페이지를 똑같이 로컬에서
-실행하는 미러입니다. 원본과 동일한 HTML · CSS · JS(더존비즈온 로고·lucide 아이콘 포함)를
+https://public-sales-insight-coach.onrender.com 사이트의 공개 페이지를 똑같이 재현한
+미러입니다. 원본과 동일한 HTML · CSS · JS(더존비즈온 로고·lucide 아이콘 포함)를
 그대로 사용하고, 데이터는 원본의 공개 API 를 실시간으로 중계해 보여줍니다.
 
-## 실행 방법
+## 온라인에서 바로 보기 (설치 없음)
+
+- **공공영업 상황실 : https://public-sales-insight-mirror.onrender.com/situation-room**
+- 공공기관 검색  : https://public-sales-insight-mirror.onrender.com/institutions
+- GitHub 저장소  : https://github.com/pray2god4u/public-sales-insight-mirror
+
+이 URL 은 Render 무료 플랜에서 상시 서비스됩니다. 15분간 접속이 없으면 서버가 잠들어
+첫 조회가 30초~1분 걸릴 수 있고, 이후 조회는 빠릅니다.
+
+## 로컬에서 실행하기
 
 가장 쉬운 방법 — Finder 에서 더블클릭:
 
