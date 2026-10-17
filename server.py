@@ -11,6 +11,7 @@
 """
 import argparse
 import json
+import os
 import sys
 import threading
 import urllib.error
@@ -135,14 +136,15 @@ def warmup():
 
 def main():
     ap = argparse.ArgumentParser(description="공공영업 상황실 로컬 미러 서버")
-    ap.add_argument("--port", type=int, default=8765)
+    ap.add_argument("--port", type=int, default=int(os.environ.get("PORT", "8765")))
+    ap.add_argument("--host", default=os.environ.get("HOST", "127.0.0.1"))
     args = ap.parse_args()
 
     if not (APP_DIR / "situation-room.html").exists():
         sys.exit("app/ 폴더의 정적 파일을 찾을 수 없습니다. 서버를 app 폴더와 함께 실행해 주세요.")
 
     threading.Thread(target=warmup, daemon=True).start()
-    httpd = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
+    httpd = ThreadingHTTPServer((args.host, args.port), Handler)
     print("공공영업 상황실 미러 서버 시작 → http://localhost:%d" % args.port)
     print("  공개영업 상황실 : http://localhost:%d/situation-room" % args.port)
     print("  공공기관 검색  : http://localhost:%d/institutions" % args.port)
