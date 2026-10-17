@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ALIO, 클린아이, 정부24, 교육부 공식 목록 기반 공공기관 검색">
+  <title>공공기관 검색 | DOUZONE</title>
+  <link rel="icon" href="/assets/douzone-logo.png">
+  <link rel="stylesheet" href="/institution-directory.css?v=20261012">
+  <script defer src="/assets/directory-lucide.min.js"></script>
+  <script defer src="/institution-directory.js?v=20261012-2"></script>
+</head>
+<body>
+  <a class="skip" href="#query">검색으로 이동</a>
+  <header class="topbar">
+    <a class="brand" href="/institutions"><img src="/assets/douzone-logo.png" alt="DOUZONE"><span>공공기관 디렉터리</span></a>
+    <div class="header-actions"><span class="public-badge"><i data-lucide="globe" aria-hidden="true"></i>공개 조회</span><a href="/situation-room">공공영업 상황실</a><a href="/login">직원 로그인<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></div>
+  </header>
+  <main>
+    <section class="heading-band">
+      <div><p class="eyebrow">PUBLIC INSTITUTION DIRECTORY</p><h1>공공기관 검색</h1><p class="subtitle">ALIO · 클린아이 · 지방자치단체 · 교육청 · 정부부처</p></div>
+      <div class="catalog-summary"><strong id="catalogTotal">—</strong><span>수록 기관·사업 단위</span><small id="checkedDate">공식 목록 확인 중</small></div>
+    </section>
+    <nav id="categoryTabs" class="category-tabs" aria-label="기관 유형"><button type="button" data-category="" aria-pressed="true">전체 <span>—</span></button></nav>
+    <section class="search-band" aria-label="기관 검색 조건">
+      <form id="searchForm">
+        <div class="search-row"><label class="search-input" for="query"><i data-lucide="search" aria-hidden="true"></i><input id="query" name="q" type="search" placeholder="기관명 또는 소관 검색" maxlength="120" autocomplete="off" aria-label="기관명 또는 소관"></label><button id="searchButton" class="primary" type="submit"><i data-lucide="search" aria-hidden="true"></i><span>검색</span></button></div>
+        <div class="filter-row"><label>소재 지역<select id="region"><option value="">전체 지역</option></select></label><label class="authority-filter">소관·상위 기관<select id="authority"><option value="">전체 소관</option></select></label><button id="reset" class="text-button" type="button"><i data-lucide="rotate-ccw" aria-hidden="true"></i>초기화</button></div>
+      </form>
+    </section>
+    <section class="result-band" aria-labelledby="resultTitle">
+      <div class="result-heading"><h2 id="resultTitle">검색 결과 <span id="resultCount">—</span></h2><div class="result-actions"><label class="size-label">표시<select id="size" aria-label="페이지당 표시 개수"><option value="25">25개</option><option value="50">50개</option><option value="100">100개</option></select></label><button id="copyLink" class="text-button" type="button"><i data-lucide="link" aria-hidden="true"></i>링크 복사</button></div></div>
+      <div id="loading" class="loading" role="status" hidden><i data-lucide="loader-circle" class="spinner" aria-hidden="true"></i>기관 목록을 조회하고 있습니다.</div>
+      <div id="error" class="error" role="alert" hidden><i data-lucide="circle-alert" aria-hidden="true"></i><p id="errorText"></p><button id="retry" type="button" class="secondary">다시 조회</button></div>
+      <p id="empty" class="empty" hidden>현재 수록 목록에서 일치하는 기관이 없습니다. 기관이 존재하지 않는다는 뜻은 아닙니다.</p>
+      <div id="tableWrap" class="table-wrap"><table><caption class="sr-only">공식 기관 목록 검색 결과</caption><colgroup><col class="col-name"><col class="col-type"><col class="col-owner"><col class="col-region"><col class="col-nps"><col class="col-source"></colgroup><thead><tr><th scope="col">기관명</th><th scope="col">기관 유형</th><th scope="col">소관·상위 기관</th><th scope="col">소재 지역</th><th scope="col">국민연금 가입자</th><th scope="col">공식 출처</th></tr></thead><tbody id="results"></tbody></table></div>
+      <div class="pagination"><p id="rangeText" role="status" aria-live="polite"></p><div><button id="first" class="icon-button" type="button" title="첫 페이지" aria-label="첫 페이지" disabled><i data-lucide="chevrons-left" aria-hidden="true"></i></button><button id="prev" class="icon-button" type="button" title="이전 페이지" aria-label="이전 페이지" disabled><i data-lucide="chevron-left" aria-hidden="true"></i></button><span id="pageText">—</span><button id="next" class="icon-button" type="button" title="다음 페이지" aria-label="다음 페이지" disabled><i data-lucide="chevron-right" aria-hidden="true"></i></button><button id="last" class="icon-button" type="button" title="마지막 페이지" aria-label="마지막 페이지" disabled><i data-lucide="chevrons-right" aria-hidden="true"></i></button></div></div>
+    </section>
+    <details class="source-band"><summary>수록 범위와 데이터 기준 <span id="sourceDate"></span></summary><p id="scopeNote"></p><ul id="sources"></ul><p>국민연금 가입자 수는 연결 사업장의 공개자료이며 전체 임직원 수와 다를 수 있습니다. 미연결은 0명이 아닙니다. 실시간 조회가 아닌 출처별 확인일 기준 목록입니다.</p><p id="staleNote" hidden>확인일이 30일 지난 자료가 있습니다. 기관 변경 사항은 공식 원문을 함께 확인해 주세요.</p></details>
+  </main>
+  <footer><span>DOUZONE · PUBLIC DATA</span><span>공개정보 조회 전용</span></footer>
+  <dialog id="detail" aria-labelledby="detailTitle"><div class="dialog-heading"><div><p class="eyebrow" id="detailCategory"></p><h2 id="detailTitle"></h2></div><button id="closeDetail" class="icon-button" type="button" aria-label="상세 닫기" title="닫기"><i data-lucide="x" aria-hidden="true"></i></button></div><dl id="detailFields"></dl><div id="detailLinks" class="detail-links"></div></dialog>
+  <p id="toast" class="toast" role="status" aria-live="polite" hidden></p>
+  <noscript><p>기관 검색을 이용하려면 브라우저의 JavaScript를 활성화해 주세요.</p></noscript>
+</body>
+</html>
